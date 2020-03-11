@@ -30,4 +30,4 @@ Gustavo Pereyra Irujo - pereyrairujo.gustavo@conicet.gov.ar
 
 **Licencia:**
 
-Este en un software de código abierto (Licencia GPL v3), por lo que cualquier persona, organización o compañía tiene la libertad de usarlo, estudiarlo, compartirlo, copiarlo y modificarlo
+Este es un software de código abierto (Licencia GPL v3), por lo que cualquier persona, organización o compañía tiene la libertad de usarlo, estudiarlo, compartirlo, copiarlo y modificarlo
