@@ -2,7 +2,7 @@
 
 El programa procesa un listado general de pedidos que generan los clientes a través de un formulario de Google (Google Forms) y genera listados individuales para cada uno de distintos puntos de entrega (que selecciona en cliente en el formulario de pedidos). También calcula los totales generales y por punto de entrega para los distintos productos que defina el usuario (por ejemplo bolsones de verdura, miel, huevos, etc.)
 
-Requisitos previos:
+**Requisitos previos:**
 1. Formulario de Google para tomar los pedidos
 2. Planilla de cálculo de Google donde se almacenan los pedidos en formato de tabla
 3. Agregar el código del programa (archivo _.gs_ en este repositorio) al _Editor de secuencias de comandos_ de Google Sheets
@@ -16,14 +16,14 @@ Requisitos previos:
 4 | Título de las planillas de lugar de entrega (+número)	| #	
 5 | Columnas para las cuales calcular totales (palabra clave, mayúsculas o minúsculas)	| Bolsones	| Miel	| Huevos
 
-Utilización:
+**Utilización:**
 1. Copiar los datos de los pedidos a una hoja (si no están ya en la planilla)
 2. Modificar los valores de la hoja 'Configuración' de acuerdo a los datos de la planilla de pedidos
 3. Ir al menú 'Pedidos' y hacer clic en 'Procesar pedidos'
 4. Esperar :)
 
-Contacto:
+**Contacto:**
 Gustavo Pereyra Irujo - pereyrairujo.gustavo@conicet.gov.ar
 
-Licencia:
+**Licencia:**
 Este en un software de código abierto (Licencia GPL v3), por lo que cualquier persona, organización o compañía tiene la libertad de usarlo, estudiarlo, compartirlo, copiarlo y modificarlo
