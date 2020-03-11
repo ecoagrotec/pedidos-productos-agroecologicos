@@ -22,7 +22,7 @@ El programa procesa un listado general de pedidos que generan los clientes a tra
 1. Copiar los datos de los pedidos a una hoja (si no están ya en la planilla)
 2. Modificar los valores de la hoja 'Configuración' de acuerdo a los datos de la planilla de pedidos
 3. Ir al menú 'Pedidos' y hacer clic en 'Procesar pedidos'
-4. Si es la primera vez que se ejecuta, se deberá autorizar el permiso a la aplicación
+4. Si es la primera vez que se ejecuta, se deberá autorizar el permiso a la aplicación y volver a ejecutar 'Procesar pedidos'
 5. Esperar :)
 
 **Contacto:**
