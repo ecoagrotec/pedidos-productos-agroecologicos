@@ -1,8 +1,8 @@
 function onOpen() { 
 
-  // agregar la función al menú
+  // agregar la funciÃ³n al menÃº
   var libro = SpreadsheetApp.getActiveSpreadsheet(); 
-  var menu = [{name: "Procesar pedidos", functionName: "procesar_pedidos"},{name: "Más info...", functionName: "mas_info"}]; 
+  var menu = [{name: "Procesar pedidos", functionName: "procesar_pedidos"},{name: "MÃ¡s info...", functionName: "mas_info"}]; 
    libro.addMenu("Pedidos", menu); 
 
 }
@@ -17,14 +17,14 @@ function mas_info() {
 
 function procesar_pedidos() {
   
-  // Leer parámetros de entrada de la hoja 'Configuración'
+  // Leer parÃ¡metros de entrada de la hoja 'ConfiguraciÃ³n'
   var libro = SpreadsheetApp.getActiveSpreadsheet()
-  var hojaConfiguracion = libro.getSheetByName("Configuración");
+  var hojaConfiguracion = libro.getSheetByName("ConfiguraciÃ³n");
   var nombreHojaPedidos = hojaConfiguracion.getRange(1,2,1,1).getValue().toString();
   var rotuloLugarEntrega = hojaConfiguracion.getRange(2,2,1,1).getValue().toString();
   var rotuloOrden = hojaConfiguracion.getRange(3,2,1,1).getValue().toString();
   var nombrePlanillas = hojaConfiguracion.getRange(4,2,1,1).getValue().toString();
-  var totales = [];   // buscar estas palabras clave en los títulos y reportar los totales en la planilla Resumen
+  var totales = [];   // buscar estas palabras clave en los tÃ­tulos y reportar los totales en la planilla Resumen
   var i=0;
   do {
     var total=hojaConfiguracion.getRange(5,i+2,1,1).getValue().toString();
@@ -37,7 +37,7 @@ function procesar_pedidos() {
   var cantidadColumnas = hojaPedidos.getLastColumn();
   var cantidadFilas = hojaPedidos.getLastRow();
 
-  // Buscar cuáles son las columnas correspondientes a lugar de entrega (rotuloLugarEntrega) y criterio para ordenar (rotuloOrden)
+  // Buscar cuÃ¡les son las columnas correspondientes a lugar de entrega (rotuloLugarEntrega) y criterio para ordenar (rotuloOrden)
   var columnaLugarEntrega = -1;
   var columnaOrden = -1;
   for (i=1;i<=cantidadColumnas;++i) 
@@ -46,16 +46,16 @@ function procesar_pedidos() {
     if (celda==rotuloLugarEntrega) columnaLugarEntrega = i;
     if (celda==rotuloOrden) columnaOrden = i;
   }
-  if (columnaLugarEntrega==-1) throw new Error("No hay columna con el rótulo " + rotuloLugarEntrega);   // marcar error si no se encuentra la columna
-  if (columnaOrden==-1) throw new Error("No hay columna con el rótulo " + rotuloOrden);   // marcar error si no se encuentra la columna
+  if (columnaLugarEntrega==-1) throw new Error("No hay columna con el rÃ³tulo " + rotuloLugarEntrega);   // marcar error si no se encuentra la columna
+  if (columnaOrden==-1) throw new Error("No hay columna con el rÃ³tulo " + rotuloOrden);   // marcar error si no se encuentra la columna
 
-  // Crear una nueva columna con el lugar de entrega en formato numérico (transformar "12) Lugar x" por "12")
+  // Crear una nueva columna con el lugar de entrega en formato numÃ©rico (transformar "12) Lugar x" por "12")
   var columnaNumeroEntrega = cantidadColumnas+1;
   hojaPedidos.getRange(2,columnaNumeroEntrega,cantidadFilas-1,1).setFormula('=value(split('+hojaPedidos.getRange(2,columnaLugarEntrega,1,1).getA1Notation()+';")"))');
   hojaPedidos.getRange(1,columnaNumeroEntrega,1,1).setFormula('=max('+hojaPedidos.getRange(2,columnaNumeroEntrega,cantidadFilas-1,1).getA1Notation()+')');
   var cantidadLugaresEntrega = +hojaPedidos.getRange(1,columnaNumeroEntrega,1,1).getValue();
   
-  // Ordenar planilla de pedidos (para que luego queden ordenadas las demás)
+  // Ordenar planilla de pedidos (para que luego queden ordenadas las demÃ¡s)
   hojaPedidos.getRange(2,1,cantidadFilas-1,columnaNumeroEntrega).sort(columnaOrden);
   hojaPedidos.getRange(2,1,cantidadFilas-1,columnaNumeroEntrega).sort(columnaNumeroEntrega);
 
@@ -86,14 +86,14 @@ function procesar_pedidos() {
     var nombreHojaLugarEntrega = nombrePlanillas+numeroLugarEntrega;
     libro.insertSheet(nombreHojaLugarEntrega);   
     var hojaLugarEntrega = libro.getSheetByName(nombreHojaLugarEntrega); 
-    var datosPrimeraFila = hojaPedidos.getRange(1,1,1,cantidadColumnas).getValues();     // títulos primera fila
+    var datosPrimeraFila = hojaPedidos.getRange(1,1,1,cantidadColumnas).getValues();     // tÃ­tulos primera fila
     hojaLugarEntrega.getRange(1,1,1,cantidadColumnas).setValues(datosPrimeraFila);   // copiar a primera fila de cada nueva hoja
   }  
   
-  // Leer fila por fila en la hoja de pedidos y copiar cada una a distintas hojas según el lugar de entrega
+  // Leer fila por fila en la hoja de pedidos y copiar cada una a distintas hojas segÃºn el lugar de entrega
   for (i=2;i<=cantidadFilas;++i) 
   {
-    numeroLugarEntrega = hojaPedidos.getRange(i,columnaNumeroEntrega,1,1).getValues();   // leer número de lugar de entrega de la última columna
+    numeroLugarEntrega = hojaPedidos.getRange(i,columnaNumeroEntrega,1,1).getValues();   // leer nÃºmero de lugar de entrega de la Ãºltima columna
     nombreHojaLugarEntrega = nombrePlanillas+numeroLugarEntrega;
     hojaLugarEntrega = libro.getSheetByName(nombreHojaLugarEntrega); 
     var ultimaFila = hojaLugarEntrega.getLastRow();
@@ -102,7 +102,7 @@ function procesar_pedidos() {
     hojaLugarEntrega.getRange(ultimaFila+1,1,1,cantidadColumnas).setValues(datosFilaCompleta);
   }
 
-  // Buscar cuáles son las columnas para las que hay que reportar totales
+  // Buscar cuÃ¡les son las columnas para las que hay que reportar totales
   var cantidadTotales = totales.length;
   var columnasTotales = new Array(cantidadTotales);
   for (var i=1;i<=cantidadColumnas;++i) 
@@ -114,7 +114,7 @@ function procesar_pedidos() {
     }
   }
   
-  // Agregar títulos a planilla resumen
+  // Agregar tÃ­tulos a planilla resumen
   for (var j=0;j<cantidadTotales;++j)
   {
     hojaResumen.getRange(1,j+2,1,1).setValue(totales[j]);
@@ -131,7 +131,7 @@ function procesar_pedidos() {
     // agregar totales
     for (j=0;j<cantidadTotales;++j)
     {
-      if (ultimaFila>2) {   // si hay datos incluir fórmula para totales
+      if (ultimaFila>1) {   // si hay datos incluir fÃ³rmula para totales
         hojaLugarEntrega.getRange(ultimaFila+1,columnasTotales[j],1,1).setFormula('=sum('+hojaLugarEntrega.getRange(2,columnasTotales[j],ultimaFila-1,1).getA1Notation()+')');
       }
       else {   // si no hay datos incluir ceros
@@ -142,16 +142,16 @@ function procesar_pedidos() {
     }
     
     // poner lugar de entrega en la primera columna de la hoja resumen
-    if (ultimaFila>2) {   // si hay datos incluir el nombre completo del lugar de entrega
+    if (ultimaFila>1) {   // si hay datos incluir el nombre completo del lugar de entrega
       var tituloLugarEntrega = nombreHojaLugarEntrega+" - "+hojaLugarEntrega.getRange(ultimaFila,columnaLugarEntrega,1,1).getValue();
     }
-    else {   // si no hay datos sólo el número
+    else {   // si no hay datos sÃ³lo el nÃºmero
       var tituloLugarEntrega = nombreHojaLugarEntrega;
     }
     hojaResumen.getRange(i+1,1,1,1).setValue(tituloLugarEntrega);  
   }  
   
-  // agregar fórmula para calcular totales generales de la planilla resumen
+  // agregar fÃ³rmula para calcular totales generales de la planilla resumen
   hojaResumen.getRange(cantidadLugaresEntrega+2,1,1,1).setValue('Total hoja resumen');
   for (j=0;j<cantidadTotales;++j) {
     hojaResumen.getRange(cantidadLugaresEntrega+2,j+2,1,1).setFormula('=sum('+hojaResumen.getRange(2,j+2,cantidadLugaresEntrega,1).getA1Notation()+')');
@@ -167,7 +167,7 @@ function procesar_pedidos() {
     hojaPedidos.getRange(ultimaFila+1,columnasTotales[j],1,1).clear();   // borrar valor calculado por la planilla
   }
   
-  // Borrar columna con el lugar de entrega en formato numérico de la hoja de pedidos
+  // Borrar columna con el lugar de entrega en formato numÃ©rico de la hoja de pedidos
   hojaPedidos.getRange(1,columnaNumeroEntrega,cantidadFilas,1).clear();
   
   // Mostrar la hoja resumen al final
